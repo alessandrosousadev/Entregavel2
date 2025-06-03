@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class QuickSort {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite o tamanho do array: ");
+        int n = scanner.nextInt();
+        int[] array = new int[n];
+        
+        System.out.println("Digite os elementos do array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+        scanner.close();
+        
+        quickSort(array, 0, n - 1);
+        
+        System.out.println("Array ordenado:");
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+    }
+    
+    public static void quickSort(int[] array, int inicio, int fim) {
+        if (inicio < fim) {
+            int pivo = particionar(array, inicio, fim);
+            quickSort(array, inicio, pivo - 1);
+            quickSort(array, pivo + 1, fim);
+        }
+    }
+    
+    public static int particionar(int[] array, int inicio, int fim) {
+        int pivo = array[fim];
+        int i = inicio - 1;
+        
+        for (int j = inicio; j < fim; j++) {
+            if (array[j] <= pivo) {
+                i++;
+                trocar(array, i, j);
+            }
+        }
+        trocar(array, i + 1, fim);
+        return i + 1;
+    }
+    
+    public static void trocar(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
