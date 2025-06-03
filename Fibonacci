@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Fibonacci {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite a quantidade de termos da sequência de Fibonacci: ");
+        int n = scanner.nextInt();
+        scanner.close();
+        
+        if (n < 1) {
+            System.out.println("A quantidade de termos deve ser maior que 0.");
+            return;
+        }
+        
+        System.out.println("Sequência de Fibonacci:");
+        int primeiro = 0, segundo = 1;
+        for (int i = 0; i < n; i++) {
+            System.out.print(primeiro + " ");
+            int proximo = primeiro + segundo;
+            primeiro = segundo;
+            segundo = proximo;
+        }
+    }
+}
