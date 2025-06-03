@@ -1,0 +1,65 @@
+public  class Main {
+    public static void main(String[] args) {
+        System.out.println("Calculadora de Máximo Divisor Comum (MDC)");
+        System.out.println("----------------------------------------");
+        
+        // Exemplos de cálculo de MDC
+        int a = 48;
+        int b = 18;
+        
+        System.out.println("MDC(" + a + ", " + b + ") = " + calcularMDC(a, b));
+        System.out.println("\nPasso a passo:");
+        mostrarPassos(a, b);
+        
+        System.out.println("\n----------------------------------------");
+        
+        // Outro exemplo
+        a = 56;
+        b = 98;
+        
+        System.out.println("MDC(" + a + ", " + b + ") = " + calcularMDC(a, b));
+        System.out.println("\nPasso a passo:");
+        mostrarPassos(a, b);
+    }
+    
+    /**
+     * Calcula o Máximo Divisor Comum (MDC) de dois números inteiros
+     * usando o algoritmo de Euclides.
+     * 
+     * @param a primeiro número inteiro
+     * @param b segundo número inteiro
+     * @return o MDC de a e b
+     */
+    public static int calcularMDC(int a, int b) {
+        a = Math.abs(a);
+        b = Math.abs(b);
+        
+        if (b == 0) {
+            return a;
+        }
+        
+        return calcularMDC(b, a % b);
+    }
+    
+    /**
+     * Mostra o passo a passo do cálculo do MDC usando o algoritmo de Euclides
+     * 
+     * @param a primeiro número inteiro
+     * @param b segundo número inteiro
+     */
+    public static void mostrarPassos(int a, int b) {
+        int x = Math.abs(a);
+        int y = Math.abs(b);
+        
+        System.out.println("Calculando MDC(" + a + ", " + b + ")");
+        
+        while (y != 0) {
+            System.out.println("MDC(" + x + ", " + y + ") = MDC(" + y + ", " + (x % y) + ")");
+            int temp = y;
+            y = x % y;
+            x = temp;
+        }
+        
+        System.out.println("Como o segundo número é 0, o MDC é " + x);
+    }
+}
